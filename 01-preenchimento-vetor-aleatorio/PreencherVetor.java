@@ -4,11 +4,24 @@ public class PreencherVetor {
     public static Random gerador = new Random();
 
     public static int[] criarVetor() {
-        int[] vetor = new int[10];
+        int[] vetor = new int[1000];
+        int i = 0;
 
-        for (int i = 0; i < 10; i++) {
-            int numeroAleatorio = gerador.nextInt(10) + 1;
-            vetor[i] = numeroAleatorio;
+        while (i < 1000) {
+            int numAleatorio = gerador.nextInt(1000) + 1;
+            boolean repetido = false;
+
+            for (int j = 0; j < i; j++) {
+                if (vetor[j] == numAleatorio) {
+                    repetido = true;
+                    break;
+                }
+            }
+
+            if (!repetido) {
+                vetor[i] = numAleatorio;
+                i++;
+            }
         }
 
         return vetor;
