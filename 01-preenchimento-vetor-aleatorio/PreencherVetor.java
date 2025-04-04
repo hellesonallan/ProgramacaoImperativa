@@ -1,51 +1,55 @@
 import java.util.Random;
 
 public class PreencherVetor {
-    public static Random gerador = new Random();
+    public static Random gerador = new Random(); // Instância do gerador de números aleatórios
 
-    public static int[] criarVetor() {
-        int[] vetor = new int[1000];
-        int i = 0;
+    public static void criarVetor1() {
+        int[] vetor = new int[1000]; // Vetor para armazenar 1000 números
+        int numerosInseridos = 0; // Contador de números já inseridos
 
-        while (i < 1000) {
-            int numAleatorio = gerador.nextInt(1000) + 1;
-            boolean repetido = false;
+        while (numerosInseridos < vetor.length) { // Loop até preencher todo o vetor
+            int numeroAleatorio = gerador.nextInt(vetor.length) + 1; // Gera número entre 1-1000
+            boolean repetido = false; // Flag para verificar repetição
 
-            for (int j = 0; j < i; j++) {
-                if (vetor[j] == numAleatorio) {
+            for (int i = 0; i < numerosInseridos; i++) { // Verifica se número já existe
+                if (vetor[i] == numeroAleatorio) {
                     repetido = true;
-                    break;
+                    break; // Encerra verificação se encontrar repetido
                 }
             }
 
-            if (!repetido) {
-                vetor[i] = numAleatorio;
-                i++;
+            if (!repetido) { // Se não for repetido, adiciona ao vetor
+                vetor[numerosInseridos] = numeroAleatorio;
+                numerosInseridos++; // Incrementa contador
             }
         }
 
-        return vetor;
+        for (int num : vetor) { // Imprime todos os números do vetor
+            System.out.print(num + " ");
+        }
     }
+    
+    public static void criarVetor2() {
+        int[] vetor = new int[1000]; // Vetor para armazenar 1000 números
 
-    public static void ordenarVetor(int[] vetor) {
-        int tamanhoVetor = vetor.length;
-        for (int i = 0; i < tamanhoVetor - 1; i++) {
-            for (int j = 0; j < tamanhoVetor - i - 1; j++) {
-                if (vetor[j] > vetor[j + 1]) {
-                    int temp = vetor[j];
-                    vetor[j] = vetor[j + 1];
-                    vetor[j + 1] = temp;
-                }
-            }
+        for (int i = 0; i < vetor.length; i++) { // Preenche com números ordenados 1-1000
+            vetor[i] = i + 1;
+        }
+
+        for (int i = 0; i < vetor.length; i++) { // Embaralha o vetor (Fisher-Yates)
+            int indiceAleatorio = gerador.nextInt(vetor.length); // Índice aleatório para troca
+
+            int temp = vetor[i]; // Troca elementos de posição
+            vetor[i] = vetor[indiceAleatorio];
+            vetor[indiceAleatorio] = temp;
+        }
+
+        for (int num : vetor) { // Imprime todos os números do vetor
+            System.out.print(num + "   ");
         }
     }
 
-    public static void main(String[] args) {
-        int[] vetor = criarVetor();
-        ordenarVetor(vetor); // função para ordenar o vetor em ordem crescente
-
-        for (int num : vetor) {
-            System.out.println(num);
-        }
+    public static void main(String[] args) { // Ponto de entrada do programa
+        criarVetor1(); // Executa o primeiro método de preenchimento
     }
 }
