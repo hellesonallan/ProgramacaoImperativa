@@ -3,7 +3,7 @@ import java.util.Random;
 public class PreencherVetor {
     public static Random gerador = new Random();
 
-    public static void criarVetor1() {
+    public static void vetorRepeticao() {
         int[] vetor = new int[1000];
         int numerosInseridos = 0;
 
@@ -24,12 +24,16 @@ public class PreencherVetor {
             }
         }
 
+        System.out.println();
+        System.out.println("Preenchendo vetores com repetição: ");
+        System.out.println();
+
         for (int num : vetor) {
             System.out.print(num + " ");
         }
     }
     
-    public static void criarVetor2() {
+    public static void vetorEmbaralhado() {
         int[] vetor = new int[1000];
 
         for (int i = 0; i < vetor.length; i++) {
@@ -43,13 +47,19 @@ public class PreencherVetor {
             vetor[i] = vetor[indiceAleatorio];
             vetor[indiceAleatorio] = temp;
         }
+        
+        System.out.println();
+        System.out.println();
+        System.out.println("Preenchendo vetores embaralhando: ");
+        System.out.println();
 
         for (int num : vetor) {
-            System.out.print(num + "   ");
+            System.out.print(num + " ");
         }
     }
 
     public static void main(String[] args) {
-        criarVetor1();
+        vetorRepeticao();
+        vetorEmbaralhado();
     }
 }
